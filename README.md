@@ -4,17 +4,22 @@ A working demonstration. An assistant prompt was grown the way real ones grow,
 one incident at a time, appending and never editing. Then it was decomposed into
 a rule table and the rules were compared against each other.
 
-**28 rules. 7 of them silently change the meaning of an earlier rule. 130 pairs
-compared. TWO CONTRADICTIONS BETWEEN RULES, plus one case where a rule stated
-twice in plain language was broken anyway.** On one of the two contradictions,
-the same input produced opposite decisions on two runs of the same model on the
-same day.
+**28 rules. 7 of them change the meaning of an earlier rule, and 6 of those do
+it without naming the rule they act on. 130 pairs compared. TWO CONTRADICTIONS
+BETWEEN RULES, plus one case where a rule stated twice in plain language was
+broken anyway.** On one of the two contradictions, the same input produced
+opposite decisions on two runs of the same model on the same day. On the other,
+two different models resolved it in opposite directions.
 
 Those are two different classes of defect and they are counted separately here
 because merging them is how a headline stops matching its own body. THE FIRST
 VERSION OF THIS PAGE SAID THREE CONFLICTS. That was wrong, it was caught by two
 readers within hours, and the correction is recorded in conflicts.md rather than
-quietly applied.
+quietly applied. The same pass corrected a second slip one clause to the left of
+it: this headline read "7 of them silently", while the table has always said only
+six are silent and named the seventh. Both were arithmetic in a headline
+disagreeing with a body, which is the defect this document exists to detect,
+committed twice by the document itself.
 
 Nothing here belongs to anybody's real system. The prompt is invented. **The
 failures it was built from are not.**
