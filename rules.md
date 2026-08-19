@@ -70,7 +70,28 @@ Rules appear on more than one surface, so the pair sets overlap and duplicates
 are counted once.
 
 **28 rules, 27 of which share a trigger surface with at least one other, 130
-unique pairs compared, 3 conflicted.**
+unique pairs compared, 2 contradicted.**
 
-The three are in conflicts.md. There is also one redundancy, which is not a
-conflict and is recorded because it is the shape nobody looks for.
+AND THE PARTITION ABOVE IS A JUDGEMENT, NOT A MEASUREMENT. Assigning a rule to a
+trigger surface was done by hand, and a different reader would draw the surfaces
+differently and get a different denominator. The 130 is honest about what was
+compared; it is not a natural constant. THE HONEST FORM OF THE CLAIM IS THAT 130
+PAIRS WERE READ, not that 130 is the number of pairs that exist.
+
+The two contradictions are in conflicts.md, along with one rule that was stated
+twice in plain language and broken anyway, which is a different class of defect,
+and one redundancy, which is the shape nobody looks for.
+
+## THE GUARD AGAINST CUTTING TOO FINELY
+
+A finer partition can manufacture a contradiction: split one rule into three, then
+declare two of the three at odds. The check is cheap and is applied here.
+
+**A conflict between two rules from the SAME pass is a drafting error or an
+artefact of the cut. A conflict ACROSS passes cannot be a splitting artefact**,
+because the two rules were physically written on different occasions and appended
+separately, with the earlier one never edited.
+
+Both contradictions cross pass boundaries: pass four against pass five, and pass
+three against pass six. Neither could have been produced by drawing the rows
+differently.

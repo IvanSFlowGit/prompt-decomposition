@@ -5,8 +5,16 @@ one incident at a time, appending and never editing. Then it was decomposed into
 a rule table and the rules were compared against each other.
 
 **28 rules. 7 of them silently change the meaning of an earlier rule. 130 pairs
-compared. 3 conflicts. On one of the three, the same input produced opposite
-decisions on two runs.**
+compared. TWO CONTRADICTIONS BETWEEN RULES, plus one case where a rule stated
+twice in plain language was broken anyway.** On one of the two contradictions,
+the same input produced opposite decisions on two runs of the same model on the
+same day.
+
+Those are two different classes of defect and they are counted separately here
+because merging them is how a headline stops matching its own body. THE FIRST
+VERSION OF THIS PAGE SAID THREE CONFLICTS. That was wrong, it was caught by two
+readers within hours, and the correction is recorded in conflicts.md rather than
+quietly applied.
 
 Nothing here belongs to anybody's real system. The prompt is invented. **The
 failures it was built from are not.**
@@ -94,6 +102,42 @@ rather than levelled to look like the other four.
     rules.md       28 rules, the trigger surfaces, the comparison population
     conflicts.md   the three conflicts, the inputs, and what came back when run
     sourcing.md    the six incidents with sources and dates, and the rejection log
+
+## A SECOND DECOMPOSITION OF THE SAME PROMPT FOUND NOTHING
+
+This is the most useful thing that happened to this document and it is published
+because it is evidence about the METHOD, which the conflicts themselves are not.
+
+The same 792 word prompt was decomposed independently, by a second party, on the
+same day. **It reported zero conflicts** and concluded, structurally, that
+writing rules from already-fixed incidents suppresses the contradictions the
+exercise exists to surface.
+
+That conclusion was wrong, and the three differences that produced it are worth
+more than either result:
+
+    GRANULARITY. Eleven rules extracted there, twenty eight here, from
+    identical text. One of their rows contained, inside itself, both halves of
+    what is conflict one below. A COARSE ROW SWALLOWS ITS OWN CONTRADICTION.
+    POPULATION. Three candidate pairs named there, two examined. 130 compared
+    here. Most pairs were excluded there by asserting that they shared no
+    trigger surface. An assertion that most of a population is irrelevant is
+    the same move as not measuring it.
+    RUN COUNT. One run per pair there, two here. Conflict two below IS the
+    difference between two runs. At one run per pair it returns a single
+    answer and looks settled.
+
+**SO THE DECOMPOSER IS AN INSTRUMENT WITH A RESOLUTION, AND THE RESOLUTION IS
+THE FINDING.** Two competent passes over one text, hours apart, returned three
+and zero. Anybody selling decomposition, including this document, has to say
+that out loud: the technique does not have a result, a particular application of
+it does, and the parameters that decide are how finely you cut the rules, how
+honestly you count the pairs, and how many times you run.
+
+The one guard against over-cutting is checkable and is applied here: **a conflict
+between two rules from the SAME pass would be a drafting error or an artefact of
+how finely the rows were drawn. All conflicts below cross pass boundaries**,
+which is what accretion looks like and what a splitting artefact cannot produce.
 
 ## THE ONE LINE
 

@@ -1,26 +1,43 @@
-# THE CONFLICTS
+# THE FINDINGS
 
-Three, out of 130 pairs compared. Each is stated as the two rules verbatim, the
-input that fires both, and what actually came back when the finished prompt was
-run against that input.
+**Two contradictions between rules. One case where a rule stated twice in plain
+language was broken anyway. One redundancy.** Out of 130 pairs compared.
+
+They are counted separately because they are different classes of defect, and
+merging them is how a headline stops matching its own body.
+
+## CORRECTION, 19 AUGUST 2026, RECORDED RATHER THAN QUIETLY APPLIED
+
+The first published version of this file called all three findings CONFLICTS and
+the README led with THREE. That was wrong. Finding three is a model failing to
+obey an unambiguous instruction, not two rules disagreeing, and the two are not
+the same claim. It was caught within hours by two readers working separately, one
+testing whether the three rules could be satisfied simultaneously (they can) and
+one reading the repository cold as its intended audience. The number moved from
+three to two. The original wording is in the git history of this file.
 
 ## RUN CONDITIONS, WITHOUT WHICH NONE OF THIS IS REPRODUCIBLE
 
-    MODEL      claude-haiku-4-5-20251001, the exact identifier, not a marketing name
+    MODELS     claude-haiku-4-5-20251001 and claude-opus-5
     DATE       19 August 2026
-    EFFORT     none set. No reasoning or effort parameter was applied; the run
-               inherited the harness default. Recorded as it was set rather than
-               as it was assumed.
-    RUNS       two per conflict, both published, including where they disagree
-    INPUT      the prompt exactly as published in prompt.md, scaffolding stripped,
-               plus the situation quoted under each conflict
+    EFFORT     none set. No reasoning or effort parameter was applied; the runs
+               inherited the harness default. Recorded as set, not as assumed.
+    RUNS       two per model per finding, all published, including where they
+               disagree with each other
+    HARNESS    AND THIS IS A REAL LIMIT ON REPRODUCIBILITY, STATED RATHER THAN
+               BURIED: these were run as agents inside a coding harness, each
+               carrying its own system prompt in addition to the prompt under
+               test. They are not bare API calls with this prompt as the only
+               system instruction. A reader reproducing this against the raw API
+               may see different behaviour, and the direction of that difference
+               is not predictable from here.
 
-These are single observations of a non-deterministic system. Each is what
-happened on one call. None of it is a claim about what the prompt does.
+Single observations of a non-deterministic system. Each is what happened on one
+call. None of it is a claim about what the prompt does.
 
 ---
 
-## CONFLICT 1. THE STORE HONOURS A DISCOUNT IT NEVER ISSUED.
+## FINDING 1. A CONTRADICTION. AND THE TWO MODELS PICK OPPOSITE SIDES.
 
 **R19, pass four:** "offer to complete the order manually at the discounted
 price if that is possible on our side."
@@ -38,27 +55,41 @@ rejected at checkout, and the code is not in the store's records.
 Pass four is written for a code that exists and misbehaves. Pass five is written
 for a code that does not exist. NEITHER RULE SAYS WHICH SITUATION THIS IS, and
 the customer cannot tell you, because from where they sit the two are identical.
-Honouring the price IS applying the code. Refusing to apply it contradicts the
-apology pass four requires.
+Honouring the price IS applying the code. Refusing to apply it withholds the
+remedy pass four promises.
 
-**WHAT CAME BACK, RUN 1:** "I don't have a record of WELCOME15 in our system, so
-I'm going to look into this and pass it to someone who can check what happened
-... In the meantime, if you'd like to complete the order now, I can also help you
-purchase it at the discounted price on our end."
+**HAIKU, RUN 1:** "I don't have a record of WELCOME15 in our system, so I'm going
+to look into this and pass it to someone who can check what happened ... In the
+meantime, if you'd like to complete the order now, I can also help you purchase
+it at the discounted price on our end."
 
-**WHAT CAME BACK, RUN 2:** "I can't see that code in our system, so I can't say
-what went wrong. A person will look into it ... In the meantime, if you still
-want the jacket, I can help complete the order manually at that discounted price."
+**HAIKU, RUN 2:** "I can't see that code in our system, so I can't say what went
+wrong. A person will look into it ... In the meantime, if you still want the
+jacket, I can help complete the order manually at that discounted price."
 
-**BOTH RUNS TOOK PASS FOUR AND LEFT PASS FIVE ON THE PAGE.** Both correctly
-reported that the code was not in the records, and both then offered the money
-off anyway. The later, stricter rule lost twice, and it lost while being quoted
-in the same breath. A store running this prompt gives away a discount nobody
-created, to any customer who names one, and every message reads perfectly.
+**OPUS, RUN 1:** "I am not able to confirm anything about the code WELCOME15 from
+my side, so I do not want to guess at what happened or tell you it will work if
+you try again. I have passed this to a colleague ... ACTION: no code applied, no
+discount confirmed or honoured."
+
+**OPUS, RUN 2:** "I'm not able to confirm anything about that code from my side
+... ACTION: No code validated, described, or applied; no discounted price offered
+or confirmed."
+
+**THE SMALL MODEL HONOURS THE DISCOUNT. THE FRONTIER MODEL REFUSES IT. TWICE
+EACH.** This is stronger evidence than reproduction would have been. The
+contradiction is in the text, so no model can satisfy both rules; what capability
+changes is WHICH RULE LOSES. On one model the store gives away money it never
+authorised. On the other, a customer who was promised a remedy in writing does
+not get it. Both are the prompt's fault and neither is visible by reading it.
+
+And it closes the obvious objection. "That would not happen on our model" is
+correct about the symptom and wrong about the defect: on the better model the
+failure simply changes direction and gets quieter.
 
 ---
 
-## CONFLICT 2. THE SAME INPUT, TWO OPPOSITE DECISIONS.
+## FINDING 2. A CONTRADICTION. THE SAME INPUT RETURNED OPPOSITE DECISIONS.
 
 **R15, pass three:** "A converted customer is not still 'abandoned' for any
 purpose, and no later message should treat them as though they are."
@@ -74,62 +105,73 @@ Pass three never says whether "converted" is a property of the CART or of the
 PERSON. Pass six assumes the cart. Pass three, read as written, says the person.
 Nothing in the prompt decides it, and the two passes are three apart.
 
-**WHAT CAME BACK, RUN 1:** `SEND`, followed by a competent reminder about the
-boots.
+**HAIKU, RUN 1:** `SEND`, with a competent reminder about the boots.
 
-**WHAT CAME BACK, RUN 2:** `DO NOT SEND`, citing, verbatim, "A converted customer
-is not still abandoned for any purpose."
+**HAIKU, RUN 2:** `DO NOT SEND`, citing verbatim: "A converted customer is not
+still abandoned for any purpose."
 
-**THIS IS THE FINDING THAT CANNOT BE ARGUED WITH.** Same prompt, same input,
-same model, same day, opposite outcomes, and the refusing run quoted the rule it
-was following. One branch sends a reminder for a real cart. The other silently
-and permanently suppresses a customer for the crime of having bought something
-once. Nobody wrote that second behaviour, nobody would defend it, and reading
-the prompt from the top does not reveal it, because the two rules are correct
-individually and only disagree on a case neither one names.
+**OPUS, RUN 1:** `SEND`.
+
+**OPUS, RUN 2:** `SEND`.
+
+**THE AMBIGUITY IS IN THE TEXT. THE FLICKER IS ONLY HOW IT BECAME VISIBLE.** One
+model resolved it differently on two consecutive runs of an identical input. The
+other picked the same side twice. THE CONSISTENT MODEL IS NOT SAFER, IT IS
+QUIETER: it commits to one reading of a sentence that has two, silently, and a
+store running it would never learn that the other reading exists until the day
+the model, the version or the temperature moves. The flickering model told the
+truth about the prompt by accident.
+
+The branch that refuses is the expensive one. It permanently suppresses a
+customer from cart messaging for the crime of having bought something once.
+Nobody wrote that behaviour and nobody would defend it.
 
 ---
 
-## CONFLICT 3. TWO REMEDIES FOR ONE COMPLAINT, AND A RULE BROKEN IN THE OUTPUT.
+## FINDING 3. NOT A CONTRADICTION. A RULE STATED TWICE, IN PLAIN LANGUAGE, AND
+BROKEN ANYWAY.
 
-**R19, pass four:** "offer to complete the order manually at the discounted
-price if that is possible on our side."
+This was published as a third conflict. It is not one, and the reclassification
+is the correction recorded at the top of this file.
 
-**R27 and R28, pass seven:** "Tell the customer we are looking into it rather
-than describing a cause we have not confirmed, and flag it to a person so it can
-be checked against what actually changed, since it may not be anything we did."
+**R20, pass four:** "Never tell a customer a code should have worked when we
+cannot confirm that it did."
 
-**The input that fires both:** an automatic discount that always applied did not
-apply.
+**R26, pass seven:** "do not assume the message or its settings are wrong."
+
+**The input:** an automatic discount that always applied did not apply.
 
     "The 10 percent that always comes off automatically when I use the link in
     your cart email didn't come off this time. I checked twice. Nothing changed
     on my end. Can you apply it?"
 
-Pass four treats a discount failure as something to make good on the spot. Pass
-seven treats it as something to investigate and hand over, precisely because the
-cause may sit outside the store. Both fire. They point at different actions and
-the customer gets a materially different outcome depending on which one governs.
+**HAIKU, RUN 1:** "You're right that it should have, and I'm genuinely sorry it
+didn't work this time."
 
-**WHAT CAME BACK, RUN 1:** "You're right that it should have, and I'm genuinely
-sorry it didn't work this time ... I can apply the 10% discount manually on our
-side."
+**HAIKU, RUN 2:** "That's not what should happen."
 
-**WHAT CAME BACK, RUN 2:** "That's not what should happen. I've flagged this for
-our team ... if you'd like to place your order, I can complete it manually for
-you at the 10% discount."
+Both confirmed the customer's diagnosis of a system nobody had checked. THE
+PROMPT FORBIDS THIS IN PLAIN LANGUAGE, TWICE, IN TWO SEPARATE PASSES.
 
-**BOTH RUNS DID BOTH THINGS, AND RUN ONE BROKE A THIRD RULE WHILE DOING IT.**
-R20, pass four, says: "Never tell a customer a code should have worked when we
-cannot confirm that it did." R26, pass seven, says: "do not assume the message or
-its settings are wrong." Run one opened with "You're right that it should have"
-and run two with "That's not what should happen". Both confirmed the customer's
-diagnosis of a system nobody had checked. THE PROMPT CONTAINS THE RULE THAT
-FORBIDS THIS, IN PLAIN LANGUAGE, TWICE, AND IT WAS BROKEN IN BOTH RUNS ANYWAY.
+**WHY IT IS NOT A CONFLICT, AND WHY THE DISTINCTION MATTERS.** R19, R27 and R28
+appear to pull in different directions here, and that is what got this filed
+wrongly. They do not. R19 is an action, R27 is a constraint on speech, R28 is an
+action, and all three can be satisfied at once. Both runs did in fact satisfy all
+three. No input forces a choice between them, so there is no contradiction to
+find.
+
+What is left is a separate and sharper point: **decomposition surfaces two
+different classes of defect, and only one of them is a contradiction.** The other
+is a rule that is unambiguous, uncontested, and simply not followed. A rule table
+finds the first by comparison. It finds the second only by running the thing and
+reading the output, which is why the table is not sufficient on its own.
+
+This finding is the one most exposed to the model objection. It was observed on
+the small model only.
 
 ---
 
-## THE REDUNDANCY, WHICH IS NOT A CONFLICT AND IS RECORDED BECAUSE NOBODY LOOKS FOR IT
+## THE REDUNDANCY, WHICH NOBODY LOOKS FOR
 
 Pass six was written to fix a real failure: a second cart on a second device
 never got a reminder. It appends R24 and R25 to make sure a new cart earns its
@@ -147,3 +189,16 @@ Now two passes state one fact, and the next person to edit either one will edit
 only that one. This is how a prompt grows without becoming more correct, and it
 is invisible to anybody reading for contradictions, because a redundancy reads
 like emphasis.
+
+---
+
+## ONE THING NEITHER MODEL WAS ASKED TO DO
+
+Both Opus runs on finding two ended with an opt-out sentence: "Reply STOP and I
+will remove you." **There is no such instruction anywhere in the prompt.** The
+model imported a convention from outside it.
+
+Recorded as an observation rather than a finding, because these runs carried a
+harness system prompt as well as the prompt under test and that is a plausible
+source. It points the same way as everything above: where the prompt is silent,
+something else decides, and the prompt's author never learns what.
