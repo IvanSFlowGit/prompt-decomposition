@@ -105,7 +105,7 @@ rather than levelled to look like the other four.
 
     prompt.md      the seven passes, in the order written, unedited
     rules.md       28 rules, the trigger surfaces, the comparison population
-    conflicts.md   the three conflicts, the inputs, and what came back when run
+    conflicts.md   the two contradictions and one redundancy, the inputs, and what came back when run
     sourcing.md    the six incidents with sources and dates, and the rejection log
 
 ## A SECOND DECOMPOSITION OF THE SAME PROMPT FOUND NOTHING
